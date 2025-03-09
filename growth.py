@@ -20,7 +20,7 @@ st.markdown(
 st.title("DataSweeper Sterling integrator by Muhammad Suleman")
 st.write("Transform your files between CSV and Excel formats with built-in data cleaning and visualization Creating the project.")
 
-uploaded_file = st.file_uploader("Upload your files (accept CSV or Excel):", type=["cvs", "xlsx"], accept_multiple_files=(True))
+uploaded_file = st.file_uploader("Upload your files (accept CSV or Excel):", type=["csv", "xlsx"], accept_multiple_files=(True))
 
 if uploaded_file:
     for file in uploaded_file:
@@ -66,12 +66,12 @@ if uploaded_file:
         if st.button(f"Convert {file.name}"):
             buffer = BytesIO()
             if conversion_type == "CSV":
-                df.to.csv(buffer, index=False)
+                df.to_csv(buffer, index=False)
                 file_name = file.name.replace(file_exe, ".csv")
                 mime_type = "text/csv"
                 
             elif conversion_type == "Excel":
-                df.to.excel(buffer, index=False)
+                df.to_excel(buffer, index=False)
                 file_name = file.name.replace(file_exe, ".xlsx")
                 mime_type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             buffer.seek(0)
